@@ -1,7 +1,7 @@
 {
     "name": "phpvms/sample-module",
-    "type": "phpvms-plugin",
-    "description": "",
+    "type": "phpvms-module",
+    "description": "A sample phpvms module",
     "require": {
         "composer/installers": "~1.0"
     },
@@ -10,10 +10,12 @@
             "providers": [
                 "Modules\\Sample\\Providers\\SampleServiceProvider",
                 "Modules\\Sample\\Providers\\EventServiceProvider"
-            ],
-            "aliases": {
-
-            }
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Sample\\": "."
         }
     }
 }
