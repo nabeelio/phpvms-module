@@ -109,7 +109,7 @@ class SampleServiceProvider extends ServiceProvider
     /**
      * Register views.
      */
-    public function registerViews()
+    public function registerViews(): void
     {
         $viewPath = resource_path('views/modules/sample');
         $sourcePath = __DIR__.'/../Resources/views';
@@ -119,13 +119,15 @@ class SampleServiceProvider extends ServiceProvider
         ], 'views');
 
         $paths = array_map(
-            function ($path) {
+            function ($path) use ($sourcePath) {
+                if ($path === resource_path('views')) {
+                    return $sourcePath;
+                }
                 return $path.'/modules/sample';
             },
             \Config::get('view.paths')
         );
-
-        $paths[] = $sourcePath;
+        
         $this->loadViewsFrom($paths, 'sample');
     }
 
